@@ -1,3 +1,8 @@
+package org.hillcrest.student;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class InputValidation {
@@ -25,11 +30,34 @@ public class InputValidation {
         return enteredNum;
     }
 
+    public double getDouble(String prompt) {
+        do  {
+            System.out.println(prompt);
+        } while (!input.hasNextDouble());
+
+        return input.nextDouble();
+    }
+
     public String getString(String prompt) {
         do  {
             System.out.println(prompt);
         } while (!input.hasNextLine());
 
         return input.nextLine();
+    }
+
+    public File getFile(String prompt) throws FileNotFoundException {
+        do  {
+            System.out.println(prompt);
+        } while (!input.hasNextLine());
+
+        String fileInput = input.nextLine();
+
+        while (!new File(fileInput).isFile()) {
+            System.out.println("Not a valid file!");
+            System.out.println(prompt);
+            fileInput = input.nextLine();
+        }
+        return new File(fileInput);
     }
 }
