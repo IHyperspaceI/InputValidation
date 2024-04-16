@@ -1,22 +1,34 @@
-package org.hillcrest.student;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class InputValidation {
-    private Scanner input = new Scanner(System.in);
+    private static Scanner input = new Scanner(System.in);
 
-    public int getInt(String prompt) {
+    /**
+     * Gets an integer from the user
+     * @param prompt what to ask the user
+     * @return int from user
+     */
+    public static int getInt(String prompt) {
         do  {
             System.out.println(prompt);
         } while (!input.hasNextInt());
 
-        return input.nextInt();
+        var num = input.nextInt();
+        input.nextLine();
+        return num;
     }
 
-    public int getInt(String prompt, int min, int max) {
+    /**
+     * Gets an integer from the user
+     * @param prompt what to ask the user
+     * @param min minimum value, tries again if below this
+     * @param max maximum value, tries again if above this
+     * @return int from user
+     */
+    public static int getInt(String prompt, int min, int max) {
         int enteredNum;
 
         do {
@@ -27,18 +39,31 @@ public class InputValidation {
             }
         } while (enteredNum < min || enteredNum > max);
 
+        //input.nextLine();
         return enteredNum;
     }
 
-    public double getDouble(String prompt) {
+    /**
+     * Gets a double from the user
+     * @param prompt what to ask the user
+     * @return a double from the user
+     */
+    public static double getDouble(String prompt) {
         do  {
             System.out.println(prompt);
         } while (!input.hasNextDouble());
 
-        return input.nextDouble();
+        var num = input.nextDouble();
+        input.nextLine();
+        return num;
     }
 
-    public String getString(String prompt) {
+    /**
+     * Gets a string from the user
+     * @param prompt what to ask the user
+     * @return string from the user
+     */
+    public static String getString(String prompt) {
         do  {
             System.out.println(prompt);
         } while (!input.hasNextLine());
@@ -46,7 +71,13 @@ public class InputValidation {
         return input.nextLine();
     }
 
-    public File getFile(String prompt) throws FileNotFoundException {
+    /**
+     * Gets a file from the user
+     * @param prompt what to ask the user
+     * @return file from user
+     * @throws FileNotFoundException uhh it has a change of dying
+     */
+    public static File getFile(String prompt) throws FileNotFoundException {
         do  {
             System.out.println(prompt);
         } while (!input.hasNextLine());
